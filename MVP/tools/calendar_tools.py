@@ -29,7 +29,6 @@ def get_calendar(target_name=None):
             if target_name.lower() in cal.get_display_name().lower():
                 return cal
     return calendars[0]
-   
 @tool
 def check_calendar_availability(date: str, time: str) -> str:
     """Check available time slots of 30 minutes in the Infomaniak calendar.

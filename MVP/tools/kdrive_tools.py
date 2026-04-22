@@ -13,7 +13,7 @@ TOKEN = os.getenv("KDRIVE_TOKEN")
 BASE_URL = f"https://api.infomaniak.com"
 HEADERS = {"Authorization": f"Bearer {TOKEN}"}
 
-BASE_DIRECTORY_ID="72"
+BASE_DIRECTORY_ID="333"
 
 def list_information_files_in_folder(folder_id: str):
     url = f"{BASE_URL}/3/drive/{DRIVE_ID}/files/{folder_id}/files"
@@ -51,7 +51,7 @@ def download_file(patient_id: str, file_id: str):
 
     if isinstance(patient_files, str):
         return patient_files
-    
+
     file_obj = next((f for f in patient_files if str(f["id"]) == file_id), None)
 
     if not file_obj:
@@ -78,7 +78,7 @@ def download_file(patient_id: str, file_id: str):
         return local_path
     except requests.exceptions.RequestException as e:
         return f"Error downloading file: {e}"
-    
+
 def download_file_unrestricted(file_id: str):
     meta_url = f"{BASE_URL}/3/drive/{DRIVE_ID}/files/{file_id}"
     try:
@@ -111,7 +111,7 @@ def download_file_unrestricted(file_id: str):
         return f"Error downloading file: {e}"
 
 def upload_message_summary_KDrive(text_content, filename="uploaded_file.txt"):
-    destination_id="38"
+    destination_id="335"
     url = f"{BASE_URL}/3/drive/{DRIVE_ID}/upload"
 
     encoded_content = text_content.encode("utf-8")
@@ -146,7 +146,7 @@ def add_patient_folder(patient_id: str):
         return response.json().get("data", {})
     except requests.exceptions.RequestException as e:
         return f"Error creating patient folder: {e}"
-    
+
 def upload_to_patient_folder(patient_id: str, text_content: str, filename: str):
     """Upload a text file into the patient's kDrive folder."""
     patient_files = list_information_files_in_folder(BASE_DIRECTORY_ID)
